@@ -16,7 +16,7 @@ public class FoodTest {
     @Test
     @DisplayName("Is not valid if it doesn't have name and description")
     public void notValidFood() {
-        Food food = new Food("name", "");
+        Food food = new Food("", "");
         Assertions.assertFalse(food.valid());
     }
 }
