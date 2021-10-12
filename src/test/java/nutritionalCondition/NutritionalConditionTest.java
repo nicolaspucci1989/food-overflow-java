@@ -22,9 +22,16 @@ public class NutritionalConditionTest {
     @Test
     @DisplayName("diabetic is not corrected by an user with a light routine and weight over 70")
     public void diabeticWithLightRoutine() {
-        user.routine = Routine.ACTIVE;
+        user.setRoutine(Routine.LIGHT);
         Assertions.assertTrue(diabetic.isCorrected(user));
 
+    }
+
+    @Test
+    @DisplayName("diabetic is corrected by an user with an active routine")
+    public void diabeticWithActiveRoutine() {
+        user.setRoutine(Routine.ACTIVE);
+        Assertions.assertTrue(diabetic.isCorrected(user));
     }
 
 
