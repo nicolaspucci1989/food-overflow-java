@@ -1,5 +1,6 @@
 package nutritionalCondition;
 
+import enums.FoodGroup;
 import enums.Routine;
 import user.User;
 
@@ -63,5 +64,23 @@ class Hypertensive extends NutritionalCondition {
     @Override
     public boolean isCorrected(User user) {
         return user.routineIs(Routine.INTENSE);
+    }
+}
+
+class Vegan extends NutritionalCondition {
+    static Vegan INSTANCE;
+
+    private Vegan() {}
+
+    public static Vegan getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Vegan();
+        }
+        return INSTANCE;
+    }
+
+    @Override
+    public boolean isCorrected(User user) {
+        return user.amountOfFavoriteFoods(FoodGroup.VEGETABLES_FRUITS_SEEDS, 2);
     }
 }
