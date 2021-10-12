@@ -34,6 +34,12 @@ public class NutritionalConditionTest {
         Assertions.assertTrue(diabetic.isCorrected(user));
     }
 
+    @Test
+    @DisplayName("diabetic is corrected by an user with no routine and a with over 70")
+    public void diabeticNoRoutine() {
+        user.setWeight(50f);
+        Assertions.assertTrue(diabetic.isCorrected(user));
+    }
 
     @BeforeEach
     public void init() {
