@@ -12,6 +12,7 @@ public class NutritionalConditionTest {
     User user;
     NutritionalCondition celiac;
     NutritionalCondition diabetic;
+    NutritionalCondition hypertensive;
 
     @Test
     @DisplayName("will always be corrected")
@@ -41,10 +42,18 @@ public class NutritionalConditionTest {
         Assertions.assertTrue(diabetic.isCorrected(user));
     }
 
+    @Test
+    @DisplayName("hypertensive is corrected by an user with an intensive routine")
+    public void hypertensiveWithIntenseRoutine() {
+        user.setRoutine(Routine.INTENSE);
+        Assertions.assertTrue(hypertensive.isCorrected(user));
+    }
+
     @BeforeEach
     public void init() {
         user = new User();
         celiac = Celiac.getInstance();
         diabetic = Diabetic.getInstance();
+        hypertensive = Hypertensive.getInstance();
     }
 }
