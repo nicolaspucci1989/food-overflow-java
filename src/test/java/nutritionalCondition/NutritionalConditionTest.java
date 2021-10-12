@@ -60,6 +60,12 @@ public class NutritionalConditionTest {
         Assertions.assertTrue(vegan.isCorrected(user));
     }
 
+    @Test
+    @DisplayName("vegan is not corrected by a user without fruits between its favorite foods")
+    public void veganWithNoFruits() {
+        Assertions.assertFalse(vegan.isCorrected(user));
+    }
+
 
     @BeforeEach
     public void init() {
