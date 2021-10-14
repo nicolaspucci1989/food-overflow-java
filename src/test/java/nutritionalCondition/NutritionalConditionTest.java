@@ -9,6 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import user.User;
 
+import java.time.LocalDate;
+
 @DisplayName("Given a nutritional condition")
 public class NutritionalConditionTest {
     User user;
@@ -16,6 +18,7 @@ public class NutritionalConditionTest {
     NutritionalCondition diabetic;
     NutritionalCondition hypertensive;
     NutritionalCondition vegan;
+    NutritionalCondition vegetarian;
 
     @Test
     @DisplayName("will always be corrected")
@@ -66,6 +69,12 @@ public class NutritionalConditionTest {
         Assertions.assertFalse(vegan.isCorrected(user));
     }
 
+    @Test
+    @DisplayName("vegetarian is corrected by a user younger than 30")
+    public void vegetarianYoungerThanThirty() {
+        user.setDateOfBirth(LocalDate.now().minusYears(27));
+        Assertions.assertTrue(vegetarian.isCorrected(user));
+    }
 
     @BeforeEach
     public void init() {
@@ -74,5 +83,6 @@ public class NutritionalConditionTest {
         diabetic = Diabetic.getInstance();
         hypertensive = Hypertensive.getInstance();
         vegan = Vegan.getInstance();
+        vegetarian = Vegetarian.getInstance();
     }
 }
