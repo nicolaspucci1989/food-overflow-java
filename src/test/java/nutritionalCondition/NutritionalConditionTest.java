@@ -76,6 +76,13 @@ public class NutritionalConditionTest {
         Assertions.assertTrue(vegetarian.isCorrected(user));
     }
 
+    @Test
+    @DisplayName("vegetarian is corrected by a user older than 30 and with no whats between its favorite foods")
+    public void vegetarianYoungNoFat() {
+        user.setDateOfBirth(LocalDate.now().minusYears(55));
+        Assertions.assertTrue(vegetarian.isCorrected(user));
+    }
+
     @BeforeEach
     public void init() {
         user = new User();
