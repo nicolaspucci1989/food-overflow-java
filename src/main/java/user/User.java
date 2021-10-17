@@ -3,6 +3,7 @@ package user;
 import enums.FoodGroup;
 import enums.Routine;
 import food.Food;
+import nutritionalCondition.NutritionalCondition;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -13,8 +14,42 @@ import java.util.stream.Collectors;
 public class User {
     public Routine routine;
     public float weight;
+    public float height;
     public Set<Food> favoriteFoods = new HashSet<>();
+    public Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
     public LocalDate dateOfBirth;
+
+    public User() {
+    }
+
+    public User(Routine routine, float weight, float height, Set<Food> favoriteFoods, LocalDate dateOfBirth) {
+        this.routine = routine;
+        this.weight = weight;
+        this.height = height;
+        this.favoriteFoods = favoriteFoods;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public float bmi() {
+        return weight / (height * height);
+    }
+
+    public boolean healthy() {
+        return healthyBmi() && (!hasPreexistingNutritionalConditions() || nutritionalConditionsAreCorrected());
+    }
+
+    private boolean nutritionalConditionsAreCorrected() {
+        return nutritionalConditions.stream().allMatch(n -> n.isCorrected(this));
+    }
+
+    private boolean hasPreexistingNutritionalConditions() {
+        return !nutritionalConditions.isEmpty();
+    }
+
+    private boolean healthyBmi() {
+        final float bmi = bmi();
+        return bmi >= 18 && bmi <= 30;
+    }
 
     public boolean routineIs(Routine _routine) {
         return routine == _routine;
@@ -35,12 +70,16 @@ public class User {
         this.favoriteFoods.add(food);
     }
 
-    private float age() {
+    public float age() {
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
 
     public boolean isYoungerThan(float _age) {
         return age() < _age;
+    }
+
+    public void addNutritionalCondition(NutritionalCondition nutritionalCondition) {
+        nutritionalConditions.add(nutritionalCondition);
     }
 
     /*
@@ -69,4 +108,5 @@ public class User {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
 }
