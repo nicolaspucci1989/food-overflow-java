@@ -45,6 +45,13 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("with an unhealthy bmi, is not healthy")
+    public void unhealthyBmi(){
+        user.setWeight(120);
+        assertFalse(user.healthy());
+    }
+
+    @Test
     @DisplayName("is not healthy if has uncorrected nutritional conditions")
     public void notHealthyUserUncorrectedNutritionalConditions() {
         user.addNutritionalCondition(diabetic);
