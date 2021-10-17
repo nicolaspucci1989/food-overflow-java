@@ -13,8 +13,24 @@ import java.util.stream.Collectors;
 public class User {
     public Routine routine;
     public float weight;
+    public float height;
     public Set<Food> favoriteFoods = new HashSet<>();
     public LocalDate dateOfBirth;
+
+    public User() {
+    }
+
+    public User(Routine routine, float weight, float height, Set<Food> favoriteFoods, LocalDate dateOfBirth) {
+        this.routine = routine;
+        this.weight = weight;
+        this.height = height;
+        this.favoriteFoods = favoriteFoods;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public float bmi() {
+        return weight / (height * height);
+    }
 
     public boolean routineIs(Routine _routine) {
         return routine == _routine;
@@ -69,4 +85,6 @@ public class User {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+
 }
