@@ -31,7 +31,6 @@ public class NutritionalConditionTest {
     public void diabeticWithLightRoutine() {
         user.setRoutine(Routine.LIGHT);
         Assertions.assertTrue(diabetic.isCorrected(user));
-
     }
 
     @Test
