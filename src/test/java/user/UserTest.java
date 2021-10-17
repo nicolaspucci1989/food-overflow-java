@@ -4,12 +4,10 @@ import enums.Routine;
 import nutritionalCondition.Diabetic;
 import nutritionalCondition.Hypertensive;
 import nutritionalCondition.NutritionalCondition;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.event.HyperlinkEvent;
 import java.time.LocalDate;
 import java.util.HashSet;
 
