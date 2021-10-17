@@ -4,6 +4,7 @@ import enums.Routine;
 import nutritionalCondition.Diabetic;
 import nutritionalCondition.Hypertensive;
 import nutritionalCondition.NutritionalCondition;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,15 @@ public class UserTest {
         user.setRoutine(Routine.INTENSE);
         user.setWeight(70);
         assertTrue(user.healthy());
+    }
+
+    @Test
+    @DisplayName("is not healthy if has uncorrected nutritional conditions")
+    public void notHealthyUserUncorrectedNutritionalConditions() {
+        user.addNutritionalCondition(diabetic);
+        user.addNutritionalCondition(hypertensive);
+        user.setRoutine(Routine.NONE);
+        assertFalse(user.healthy());
     }
 
     @Test
