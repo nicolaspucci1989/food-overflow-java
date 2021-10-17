@@ -31,42 +31,6 @@ class Celiac extends NutritionalCondition {
     }
 }
 
-class Diabetic extends NutritionalCondition {
-    static Diabetic INSTANCE;
-
-    private Diabetic() {}
-
-    public static Diabetic getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Diabetic();
-        }
-        return INSTANCE;
-    }
-
-    @Override
-    public boolean isCorrected(User user) {
-        return user.routineIs(Routine.ACTIVE) || user.exceedsWeight(70f);
-    }
-}
-
-class Hypertensive extends NutritionalCondition {
-    static Hypertensive INSTANCE;
-
-    private Hypertensive() {}
-
-    public static Hypertensive getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Hypertensive();
-        }
-        return INSTANCE;
-    }
-
-    @Override
-    public boolean isCorrected(User user) {
-        return user.routineIs(Routine.INTENSE);
-    }
-}
-
 class Vegan extends NutritionalCondition {
     static Vegan INSTANCE;
 

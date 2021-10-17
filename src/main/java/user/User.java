@@ -78,6 +78,10 @@ public class User {
         return age() < _age;
     }
 
+    public void addNutritionalCondition(NutritionalCondition nutritionalCondition) {
+        nutritionalConditions.add(nutritionalCondition);
+    }
+
     /*
     *   Getters and setters
     */
