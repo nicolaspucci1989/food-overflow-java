@@ -1,15 +1,27 @@
 package food;
 
 import enums.FoodGroup;
+import nutritionalCondition.NutritionalCondition;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Food {
     public String name;
     public String description;
     public FoodGroup foodGroup;
+    public Set<NutritionalCondition> inadequateConditions = new HashSet<>();
 
     public Food(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Food(String name, String description, FoodGroup foodGroup, Set<NutritionalCondition> inadequateConditions) {
+        this.name = name;
+        this.description = description;
+        this.foodGroup = foodGroup;
+        this.inadequateConditions = inadequateConditions;
     }
 
     public Food() {}
