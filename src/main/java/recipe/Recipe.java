@@ -4,16 +4,21 @@ import ingredient.Ingredient;
 import nutritionalCondition.NutritionalCondition;
 import user.User;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class Recipe {
     User author;
-    Set<User> collaborators = new HashSet<>();
+    Set<User> collaborators;
+    float calories;
+    List<String> preparationSteps;
 
-    public Recipe(User author) {
+    public Recipe(User author, Set<User> collaborators, float calories, List<String> preparationSteps) {
         this.author = author;
+        this.collaborators = collaborators;
+        this.calories = calories;
+        this.preparationSteps = preparationSteps;
     }
 
     public boolean editable(User user) {
@@ -36,4 +41,20 @@ public abstract class Recipe {
     }
 
     public abstract Set<Ingredient> getIngredients();
+
+    public boolean valid() {
+        return hasIngredients() && hasValidCalories() && hasValidProcess();
+    }
+
+    private boolean hasValidProcess() {
+        return !preparationSteps.isEmpty();
+    }
+
+    private boolean hasValidCalories() {
+        return calories >= 10 && calories <= 5000;
+    }
+
+    private boolean hasIngredients() {
+        return !getIngredients().isEmpty();
+    }
 }

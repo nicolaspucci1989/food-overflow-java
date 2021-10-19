@@ -1,9 +1,9 @@
 package recipe;
 
 import builders.FoodBuilder;
+import builders.SimpleRecipeBuilder;
 import enums.FoodGroup;
 import ingredient.Ingredient;
-import nutritionalCondition.NutritionalCondition;
 import nutritionalCondition.Vegan;
 import nutritionalCondition.Vegetarian;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,9 @@ public class SimpleRecipeTest {
     User collaborator;
     User user;
     Recipe recipe;
+    Recipe nonValidRecipe;
     FoodBuilder foodBuilder = new FoodBuilder();
+    SimpleRecipeBuilder simpleRecipeBuilder = new SimpleRecipeBuilder();
 
     @Test
     @DisplayName("can be edited by an author or collaborator user")
@@ -47,6 +49,18 @@ public class SimpleRecipeTest {
         assertEquals(conditions, recipe.inadequateConditions());
     }
 
+    @Test
+    @DisplayName("with no ingredients is not valid")
+    public void recipeNotValid() {
+        assertFalse(nonValidRecipe.valid());
+    }
+
+    @Test
+    @DisplayName("is valid if is valid")
+    public void validRecipe() {
+        assertTrue(recipe.valid());
+    }
+
     @BeforeEach
     public void init() {
         author = new User();
@@ -59,6 +73,17 @@ public class SimpleRecipeTest {
                 .addInadequateCondition(Vegan.getInstance())
                 .build();
         var ingredient = new Ingredient(food, "150 g");
-        recipe = new SimpleRecipe(author, new HashSet<>(List.of(ingredient)));
+
+        recipe = simpleRecipeBuilder
+                .setAuthor(author)
+                .setCalories(100f)
+                .addCollaborator(collaborator)
+                .addPreparationStep("step one")
+                .addIngredient(ingredient)
+                .build();
+
+        nonValidRecipe = simpleRecipeBuilder
+                .setAuthor(author)
+                .build();
     }
 }
