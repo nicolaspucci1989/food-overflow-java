@@ -29,7 +29,7 @@ public class CompoundRecipeTest {
 
 
     @Test
-    @DisplayName("es inadecuada para el conjunto de condiciones alimenticias de sus subrecetas")
+    @DisplayName("is inadequate for the set of nutritional conditions of its sub-recipes")
     public void inadequateCompoundRecipe() {
         var nutritionalConditions = Stream.of(Vegan.getInstance(),
                 Vegetarian.getInstance(),
