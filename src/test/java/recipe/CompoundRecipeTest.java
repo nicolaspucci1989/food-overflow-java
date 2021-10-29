@@ -3,10 +3,11 @@ package recipe;
 import builders.FoodBuilder;
 import builders.SimpleRecipeBuilder;
 import enums.FoodGroup;
-import food.Food;
 import ingredient.Ingredient;
-import nutritionalCondition.*;
-import org.junit.jupiter.api.Assertions;
+import nutritionalCondition.Diabetic;
+import nutritionalCondition.Hypertensive;
+import nutritionalCondition.Vegan;
+import nutritionalCondition.Vegetarian;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Given a compound recipe")
 public class CompoundRecipeTest {
@@ -37,7 +40,7 @@ public class CompoundRecipeTest {
                 Diabetic.getInstance())
                     .collect(Collectors.toCollection(HashSet::new));
 
-        Assertions.assertEquals(nutritionalConditions, compoundRecipe.inadequateConditions());
+        assertEquals(nutritionalConditions, compoundRecipe.inadequateConditions());
     }
 
     @BeforeEach
