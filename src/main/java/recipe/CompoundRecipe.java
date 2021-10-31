@@ -44,6 +44,7 @@ public class CompoundRecipe extends Recipe{
 
     @Override
     public Difficulty difficulty() {
+        // TODO: use flatMap
         return subRecipes
                 .stream()
                 .map(Recipe::difficulty)
