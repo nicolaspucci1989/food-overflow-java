@@ -32,8 +32,12 @@ public class SimpleRecipe extends Recipe{
     }
 
     @Override
-    public float getCalories() {
+    public Float getCalories() {
         return calories;
+    }
+
+    public void setCalories(Float calories) {
+        this.calories = calories;
     }
 
     @Override

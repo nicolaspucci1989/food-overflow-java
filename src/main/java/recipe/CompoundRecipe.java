@@ -28,7 +28,7 @@ public class CompoundRecipe extends Recipe{
     }
 
     @Override
-    public float getCalories() {
+    public Float getCalories() {
         return subRecipes
                 .stream()
                 .map(Recipe::getCalories)
@@ -52,7 +52,7 @@ public class CompoundRecipe extends Recipe{
                 .map(Recipe::difficulty)
                 .collect(Collectors.toSet())
                 .stream()
-                .max((o1, o2) -> o1.compareTo(o2) >= 0 ? o1.ordinal() : o2.ordinal())
+                .max((o1, o2) -> o1.compareTo(o2) >= 0 ? o2.ordinal() : o1.ordinal())
                 .orElse(null);
     }
 }

@@ -57,7 +57,7 @@ public abstract class Recipe {
         return !getIngredients().isEmpty();
     }
 
-    public abstract float getCalories();
+    public abstract Float getCalories();
 
     public abstract List<String> getPreparationSteps();
 
