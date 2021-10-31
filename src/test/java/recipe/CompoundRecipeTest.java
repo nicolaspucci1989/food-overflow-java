@@ -2,6 +2,7 @@ package recipe;
 
 import builders.FoodBuilder;
 import builders.SimpleRecipeBuilder;
+import enums.Difficulty;
 import enums.FoodGroup;
 import ingredient.Ingredient;
 import nutritionalCondition.Diabetic;
@@ -43,6 +44,12 @@ public class CompoundRecipeTest {
         assertEquals(nutritionalConditions, compoundRecipe.inadequateConditions());
     }
 
+    @Test
+    @DisplayName("its difficulty is equal to the maximum difficulty of its sub-recipes")
+    public void compoundRecipeDifficulty() {
+        assertEquals(Difficulty.NORMAL, compoundRecipe.difficulty());
+    }
+
     @BeforeEach
     public void init() {
         compoundUser = new User();
@@ -79,6 +86,7 @@ public class CompoundRecipeTest {
                 .setCalories(100f)
                 .addPreparationStep("step one")
                 .addIngredient(ingredientOne)
+                .setDifficutly(Difficulty.EASY)
                 .build();
 
         var simpleRecipeTwo = simpleRecipeBd
@@ -86,6 +94,7 @@ public class CompoundRecipeTest {
                 .setCalories(200f)
                 .addPreparationStep("step one")
                 .addIngredient(ingredientTwo)
+                .setDifficutly(Difficulty.EASY)
                 .build();
 
         var simpleRecipeThree = simpleRecipeBd
@@ -93,6 +102,7 @@ public class CompoundRecipeTest {
                 .setCalories(300f)
                 .addPreparationStep("step one")
                 .addIngredient(ingredientThree)
+                .setDifficutly(Difficulty.NORMAL)
                 .build();
 
         var compoundRecipeTwo = new CompoundRecipe(authorOne,

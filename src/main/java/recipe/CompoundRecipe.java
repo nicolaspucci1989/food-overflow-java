@@ -1,5 +1,6 @@
 package recipe;
 
+import enums.Difficulty;
 import ingredient.Ingredient;
 import user.User;
 
@@ -39,5 +40,16 @@ public class CompoundRecipe extends Recipe{
                 .stream()
                 .flatMap(recipe -> getPreparationSteps().stream())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Difficulty difficulty() {
+        return subRecipes
+                .stream()
+                .map(Recipe::difficulty)
+                .collect(Collectors.toSet())
+                .stream()
+                .max((o1, o2) -> o1.compareTo(o2) >= 0 ? o1.ordinal() : o2.ordinal())
+                .orElse(null);
     }
 }

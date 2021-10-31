@@ -2,6 +2,7 @@ package recipe;
 
 import builders.FoodBuilder;
 import builders.SimpleRecipeBuilder;
+import enums.Difficulty;
 import enums.FoodGroup;
 import ingredient.Ingredient;
 import nutritionalCondition.Vegan;
@@ -13,7 +14,7 @@ import user.User;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Given a simple recipe")
@@ -80,6 +81,7 @@ public class SimpleRecipeTest {
                 .addCollaborator(collaborator)
                 .addPreparationStep("step one")
                 .addIngredient(ingredient)
+                .setDifficutly(Difficulty.EASY)
                 .build();
 
         nonValidRecipe = simpleRecipeBuilder

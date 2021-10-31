@@ -1,5 +1,6 @@
 package recipe;
 
+import enums.Difficulty;
 import ingredient.Ingredient;
 import nutritionalCondition.NutritionalCondition;
 import user.User;
@@ -59,4 +60,6 @@ public abstract class Recipe {
     public abstract float getCalories();
 
     public abstract List<String> getPreparationSteps();
+
+    public abstract Difficulty difficulty();
 }

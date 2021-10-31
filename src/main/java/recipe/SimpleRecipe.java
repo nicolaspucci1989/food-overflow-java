@@ -1,5 +1,6 @@
 package recipe;
 
+import enums.Difficulty;
 import ingredient.Ingredient;
 import user.User;
 
@@ -10,16 +11,19 @@ public class SimpleRecipe extends Recipe{
     Set<Ingredient> ingredients;
     Float calories;
     List<String> preparationSteps;
+    Difficulty difficulty;
 
     public SimpleRecipe(User author,
                         Set<User> collaborators,
                         float calories,
                         List<String> preparationSteps,
-                        Set<Ingredient> ingredients) {
+                        Set<Ingredient> ingredients,
+                        Difficulty difficulty) {
         super(author, collaborators);
         this.ingredients = ingredients;
         this.calories = calories;
         this.preparationSteps = preparationSteps;
+        this.difficulty = difficulty;
     }
 
     @Override
@@ -35,5 +39,10 @@ public class SimpleRecipe extends Recipe{
     @Override
     public List<String> getPreparationSteps() {
         return preparationSteps;
+    }
+
+    @Override
+    public Difficulty difficulty() {
+        return difficulty;
     }
 }

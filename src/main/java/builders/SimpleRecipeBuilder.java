@@ -1,5 +1,6 @@
 package builders;
 
+import enums.Difficulty;
 import ingredient.Ingredient;
 import recipe.SimpleRecipe;
 import user.User;
@@ -15,6 +16,7 @@ public class SimpleRecipeBuilder {
     private Set<User> collaborators = new HashSet<>();
     List<String> preparationSteps = new ArrayList<>();
     Set<Ingredient> ingredients = new HashSet<>();
+    private Difficulty difficulty;
 
     public SimpleRecipeBuilder setAuthor(User author) {
         this.author = author;
@@ -41,8 +43,18 @@ public class SimpleRecipeBuilder {
         return this;
     }
 
+    public SimpleRecipeBuilder setDifficutly(Difficulty difficulty) {
+        this.difficulty = difficulty;
+        return this;
+    }
+
     public SimpleRecipe build() {
-        var recipe = new SimpleRecipe(author, collaborators, calories, preparationSteps, ingredients);
+        var recipe = new SimpleRecipe(author,
+                collaborators,
+                calories,
+                preparationSteps,
+                ingredients,
+                difficulty);
         reset();
         return recipe;
     }
@@ -51,6 +63,7 @@ public class SimpleRecipeBuilder {
         collaborators = new HashSet<>();
         preparationSteps = new ArrayList<>();
         ingredients = new HashSet<>();
+        difficulty = null;
     }
 
 }
