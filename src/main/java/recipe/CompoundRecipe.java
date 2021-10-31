@@ -7,6 +7,7 @@ import user.User;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CompoundRecipe extends Recipe{
     public List<Recipe> subRecipes;
@@ -30,7 +31,7 @@ public class CompoundRecipe extends Recipe{
     public float getCalories() {
         return subRecipes
                 .stream()
-                .map(recipe -> getCalories())
+                .map(Recipe::getCalories)
                 .reduce(0f, Float::sum);
     }
 

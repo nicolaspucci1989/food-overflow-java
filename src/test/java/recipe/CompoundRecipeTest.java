@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Given a compound recipe")
 public class CompoundRecipeTest {
@@ -60,6 +61,14 @@ public class CompoundRecipeTest {
 
         assertEquals(steps, compoundRecipe.getPreparationSteps());
     }
+
+    @Test
+    @DisplayName("sum of calories")
+    public void composedOfCompoundRecipes() {
+        var calories = 100f + 200f + 300;
+        assertEquals(calories, compoundRecipe.getCalories());
+    }
+
 
     @BeforeEach
     public void init() {
