@@ -38,7 +38,8 @@ public class CompoundRecipe extends Recipe{
     public List<String> getPreparationSteps() {
         return subRecipes
                 .stream()
-                .flatMap(recipe -> getPreparationSteps().stream())
+                .map(Recipe::getPreparationSteps)
+                .flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 

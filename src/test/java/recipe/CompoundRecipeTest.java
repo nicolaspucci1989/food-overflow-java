@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CompoundRecipeTest {
     public User compoundUser;
     public User authorOne;
-    public Recipe compoundRecipe;
+    public CompoundRecipe compoundRecipe;
     public FoodBuilder foodBd = new FoodBuilder();
     public SimpleRecipeBuilder simpleRecipeBd = new SimpleRecipeBuilder();
 
@@ -48,6 +48,17 @@ public class CompoundRecipeTest {
     @DisplayName("its difficulty is equal to the maximum difficulty of its sub-recipes")
     public void compoundRecipeDifficulty() {
         assertEquals(Difficulty.NORMAL, compoundRecipe.difficulty());
+    }
+
+    @Test
+    @DisplayName("its preparation process is equal to the set of the preparation process of its sub-recipes plus its own preparation steps")
+    public void procesoRecetaCompuesta() {
+        var steps = new ArrayList<String>();
+        steps.add("step one recipe one");
+        steps.add("step one recipe two");
+        steps.add("step one recipe three");
+
+        assertEquals(steps, compoundRecipe.getPreparationSteps());
     }
 
     @BeforeEach
@@ -84,7 +95,7 @@ public class CompoundRecipeTest {
         var simpleRecipeOne = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(100f)
-                .addPreparationStep("step one")
+                .addPreparationStep("step one recipe one")
                 .addIngredient(ingredientOne)
                 .setDifficutly(Difficulty.EASY)
                 .build();
@@ -92,7 +103,7 @@ public class CompoundRecipeTest {
         var simpleRecipeTwo = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(200f)
-                .addPreparationStep("step one")
+                .addPreparationStep("step one recipe two")
                 .addIngredient(ingredientTwo)
                 .setDifficutly(Difficulty.EASY)
                 .build();
@@ -100,7 +111,7 @@ public class CompoundRecipeTest {
         var simpleRecipeThree = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(300f)
-                .addPreparationStep("step one")
+                .addPreparationStep("step one recipe three")
                 .addIngredient(ingredientThree)
                 .setDifficutly(Difficulty.NORMAL)
                 .build();
