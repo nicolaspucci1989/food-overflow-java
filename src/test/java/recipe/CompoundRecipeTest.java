@@ -69,6 +69,11 @@ public class CompoundRecipeTest {
         assertEquals(calories, compoundRecipe.getCalories());
     }
 
+    @Test
+    @DisplayName("valid")
+    public void valid() {
+        assertTrue(compoundRecipe.valid());
+    }
 
     @BeforeEach
     public void init() {
