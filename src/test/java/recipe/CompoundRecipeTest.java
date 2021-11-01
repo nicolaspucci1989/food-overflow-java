@@ -32,7 +32,6 @@ public class CompoundRecipeTest {
     public SimpleRecipeBuilder simpleRecipeBd = new SimpleRecipeBuilder();
     private Recipe simpleRecipeOne;
     private Recipe simpleRecipeTwo;
-    private Recipe simpleRecipeThree;
     private Recipe compoundRecipeTwo;
 
 
@@ -146,7 +145,7 @@ public class CompoundRecipeTest {
                 .setDifficutly(Difficulty.EASY)
                 .build();
 
-        simpleRecipeThree = simpleRecipeBd
+        Recipe simpleRecipeThree = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(300f)
                 .addPreparationStep("step one recipe three")
