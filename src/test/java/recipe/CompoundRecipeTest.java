@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import user.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +30,10 @@ public class CompoundRecipeTest {
     public CompoundRecipe compoundRecipe;
     public FoodBuilder foodBd = new FoodBuilder();
     public SimpleRecipeBuilder simpleRecipeBd = new SimpleRecipeBuilder();
+    private Recipe simpleRecipeOne;
+    private Recipe simpleRecipeTwo;
+    private Recipe simpleRecipeThree;
+    private Recipe compoundRecipeTwo;
 
 
     @Test
@@ -42,12 +45,21 @@ public class CompoundRecipeTest {
                 Diabetic.getInstance())
                     .collect(Collectors.toCollection(HashSet::new));
 
+        compoundRecipe.addSubRecipe(simpleRecipeOne);
+        compoundRecipe.addSubRecipe(simpleRecipeTwo);
+        compoundRecipe.addSubRecipe(compoundRecipeTwo);
+
         assertEquals(nutritionalConditions, compoundRecipe.inadequateConditions());
     }
 
     @Test
     @DisplayName("its difficulty is equal to the maximum difficulty of its sub-recipes")
     public void compoundRecipeDifficulty() {
+
+        compoundRecipe.addSubRecipe(simpleRecipeOne);
+        compoundRecipe.addSubRecipe(simpleRecipeTwo);
+        compoundRecipe.addSubRecipe(compoundRecipeTwo);
+
         assertEquals(Difficulty.NORMAL, compoundRecipe.difficulty());
     }
 
@@ -55,9 +67,14 @@ public class CompoundRecipeTest {
     @DisplayName("its preparation process is equal to the set of the preparation process of its sub-recipes plus its own preparation steps")
     public void procesoRecetaCompuesta() {
         var steps = new ArrayList<String>();
-        steps.add("step one recipe one");
-        steps.add("step one recipe two");
-        steps.add("step one recipe three");
+
+        steps.addAll(simpleRecipeOne.getPreparationSteps());
+        steps.addAll(simpleRecipeTwo.getPreparationSteps());
+        steps.addAll(compoundRecipeTwo.getPreparationSteps());
+
+        compoundRecipe.addSubRecipe(simpleRecipeOne);
+        compoundRecipe.addSubRecipe(simpleRecipeTwo);
+        compoundRecipe.addSubRecipe(compoundRecipeTwo);
 
         assertEquals(steps, compoundRecipe.getPreparationSteps());
     }
@@ -65,13 +82,20 @@ public class CompoundRecipeTest {
     @Test
     @DisplayName("sum of calories")
     public void composedOfCompoundRecipes() {
-        var calories = 100f + 200f + 300;
+        var calories = simpleRecipeOne.getCalories() + simpleRecipeTwo.getCalories();
+
+        compoundRecipe.addSubRecipe(simpleRecipeOne);
+        compoundRecipe.addSubRecipe(simpleRecipeTwo);
+
         assertEquals(calories, compoundRecipe.getCalories());
     }
 
     @Test
     @DisplayName("valid")
     public void valid() {
+        compoundRecipe.addSubRecipe(simpleRecipeOne);
+        compoundRecipe.addSubRecipe(simpleRecipeTwo);
+        compoundRecipe.addSubRecipe(compoundRecipeTwo);
         assertTrue(compoundRecipe.valid());
     }
 
@@ -106,7 +130,7 @@ public class CompoundRecipeTest {
         var ingredientTwo = new Ingredient(foodTwo, "150 g");
         var ingredientThree = new Ingredient(foodThree, "150 g");
 
-        var simpleRecipeOne = simpleRecipeBd
+        simpleRecipeOne = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(100f)
                 .addPreparationStep("step one recipe one")
@@ -114,7 +138,7 @@ public class CompoundRecipeTest {
                 .setDifficutly(Difficulty.EASY)
                 .build();
 
-        var simpleRecipeTwo = simpleRecipeBd
+        simpleRecipeTwo = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(200f)
                 .addPreparationStep("step one recipe two")
@@ -122,7 +146,7 @@ public class CompoundRecipeTest {
                 .setDifficutly(Difficulty.EASY)
                 .build();
 
-        var simpleRecipeThree = simpleRecipeBd
+        simpleRecipeThree = simpleRecipeBd
                 .setAuthor(authorOne)
                 .setCalories(300f)
                 .addPreparationStep("step one recipe three")
@@ -130,12 +154,12 @@ public class CompoundRecipeTest {
                 .setDifficutly(Difficulty.NORMAL)
                 .build();
 
-        var compoundRecipeTwo = new CompoundRecipe(authorOne,
+        compoundRecipeTwo = new CompoundRecipe(authorOne,
                 new HashSet<>(),
                 new ArrayList<>(List.of(simpleRecipeThree)));
 
         compoundRecipe = new CompoundRecipe(compoundUser,
                 new HashSet<>(),
-                new ArrayList<>(Arrays.asList(simpleRecipeOne, simpleRecipeTwo, compoundRecipeTwo)));
+                new ArrayList<>());
     }
 }
