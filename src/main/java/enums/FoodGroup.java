@@ -1,9 +1,0 @@
-package enums;
-
-public enum FoodGroup {
-    VEGETABLES_FRUITS_SEEDS,
-    CEREALS_VEGETABLES_DERIVATIVE,
-    DAIRY_DERIVATIVES,
-    MEAT_FISH_EGG,
-    FATTY_OILS_SUGAR
-}
