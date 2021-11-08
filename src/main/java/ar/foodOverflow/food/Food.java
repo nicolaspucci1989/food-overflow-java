@@ -3,14 +3,30 @@ package ar.foodOverflow.food;
 import ar.foodOverflow.enums.FoodGroup;
 import ar.foodOverflow.nutritionalCondition.NutritionalCondition;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Food {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     public String name;
     public String description;
     public FoodGroup foodGroup;
+    @Transient
     public Set<NutritionalCondition> inadequateConditions = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Food(String name, String description) {
         this.name = name;

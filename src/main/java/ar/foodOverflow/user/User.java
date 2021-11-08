@@ -5,19 +5,36 @@ import ar.foodOverflow.enums.Routine;
 import ar.foodOverflow.food.Food;
 import ar.foodOverflow.nutritionalCondition.NutritionalCondition;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     public Routine routine;
     public float weight;
     public float height;
+    @ManyToMany
     public Set<Food> favoriteFoods = new HashSet<>();
+    @Transient
     public Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
     public LocalDate dateOfBirth;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User() {
     }
