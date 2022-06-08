@@ -1,9 +1,7 @@
 package recipe;
 
 import ingredient.Ingredient;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import nutritionalCondition.NutritionalCondition;
 import user.User;
 

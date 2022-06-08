@@ -1,11 +1,15 @@
 package recipe;
 
 import ingredient.Ingredient;
+import lombok.Getter;
+import lombok.Setter;
 import user.User;
 
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
 public class SimpleRecipe extends Recipe{
     Set<Ingredient> ingredients;
 
