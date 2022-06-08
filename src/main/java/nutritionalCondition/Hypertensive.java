@@ -1,13 +1,13 @@
 package nutritionalCondition;
 
 import enums.Routine;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import user.User;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Hypertensive extends NutritionalCondition {
     static Hypertensive INSTANCE;
-
-    private Hypertensive() {
-    }
 
     public static Hypertensive getInstance() {
         if (INSTANCE == null) {

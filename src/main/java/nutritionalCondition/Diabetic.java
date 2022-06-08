@@ -1,13 +1,13 @@
 package nutritionalCondition;
 
 import enums.Routine;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import user.User;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Diabetic extends NutritionalCondition {
     static Diabetic INSTANCE;
-
-    private Diabetic() {
-    }
 
     public static Diabetic getInstance() {
         if (INSTANCE == null) {
