@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -66,10 +65,11 @@ public class UserTest {
 
     @BeforeEach
     public void init() {
-        user = new User(Routine.ACTIVE,
-                80.2f,
-                1.7f,
-                new HashSet<>(),
-                LocalDate.now().minusYears(22));
+        user = User.builder()
+            .routine(Routine.ACTIVE)
+            .weight(80.2f)
+            .height(1.7f)
+            .dateOfBirth(LocalDate.now().minusYears(22))
+            .build();
     }
 }

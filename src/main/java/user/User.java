@@ -3,10 +3,7 @@ package user;
 import enums.FoodGroup;
 import enums.Routine;
 import food.Food;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import nutritionalCondition.NutritionalCondition;
 
 import java.time.LocalDate;
@@ -17,13 +14,16 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
     public Routine routine;
     public float weight;
     public float height;
+    @Builder.Default
     public Set<Food> favoriteFoods = new HashSet<>();
+    @Builder.Default
     public Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
     public LocalDate dateOfBirth;
 
