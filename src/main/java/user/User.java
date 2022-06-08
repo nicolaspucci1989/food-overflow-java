@@ -3,6 +3,10 @@ package user;
 import enums.FoodGroup;
 import enums.Routine;
 import food.Food;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import nutritionalCondition.NutritionalCondition;
 
 import java.time.LocalDate;
@@ -11,6 +15,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     public Routine routine;
     public float weight;
@@ -18,9 +26,6 @@ public class User {
     public Set<Food> favoriteFoods = new HashSet<>();
     public Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
     public LocalDate dateOfBirth;
-
-    public User() {
-    }
 
     public User(Routine routine, float weight, float height, Set<Food> favoriteFoods, LocalDate dateOfBirth) {
         this.routine = routine;
@@ -80,33 +85,6 @@ public class User {
 
     public void addNutritionalCondition(NutritionalCondition nutritionalCondition) {
         nutritionalConditions.add(nutritionalCondition);
-    }
-
-    /*
-    *   Getters and setters
-    */
-    public Routine getRoutine() {
-        return routine;
-    }
-
-    public void setRoutine(Routine routine) {
-        this.routine = routine;
-    }
-
-    public float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
 }
