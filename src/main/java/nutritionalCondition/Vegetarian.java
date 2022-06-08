@@ -1,13 +1,13 @@
 package nutritionalCondition;
 
 import enums.FoodGroup;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import user.User;
 
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Vegetarian extends NutritionalCondition {
     static Vegetarian INSTANCE;
-
-    private Vegetarian() {
-    }
 
     public static Vegetarian getInstance() {
         if (INSTANCE == null) {
