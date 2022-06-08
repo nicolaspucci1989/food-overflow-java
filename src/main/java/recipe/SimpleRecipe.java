@@ -12,14 +12,25 @@ import java.util.Set;
 @Setter
 public class SimpleRecipe extends Recipe{
     Set<Ingredient> ingredients;
+    List<String> preparationSteps;
 
     public SimpleRecipe(User author, Set<User> collaborators, float calories, List<String> preparationSteps, Set<Ingredient> ingredients) {
-        super(author, collaborators, calories, preparationSteps);
+        super(author, collaborators, calories);
         this.ingredients = ingredients;
+        this.preparationSteps = preparationSteps;
     }
 
     @Override
     public Set<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+    }
+
+    public void addPreparationStep(String preparationStep) {
+        this.preparationSteps.add(preparationStep);
     }
 }

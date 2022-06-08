@@ -16,7 +16,6 @@ public abstract class Recipe {
     private User author;
     private Set<User> collaborators;
     private float calories;
-    private List<String> preparationSteps;
 
     public boolean editable(User user) {
        return isAuthor(user) || collaborators.contains(user);
@@ -44,7 +43,7 @@ public abstract class Recipe {
     }
 
     private boolean hasValidProcess() {
-        return !preparationSteps.isEmpty();
+        return !getPreparationSteps().isEmpty();
     }
 
     private boolean hasValidCalories() {
@@ -54,4 +53,8 @@ public abstract class Recipe {
     private boolean hasIngredients() {
         return !getIngredients().isEmpty();
     }
+
+    public abstract void addIngredient(Ingredient ingredient);
+
+    public abstract List<String> getPreparationSteps();
 }
