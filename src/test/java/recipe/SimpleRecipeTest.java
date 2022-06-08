@@ -22,7 +22,7 @@ public class SimpleRecipeTest {
     User author;
     User collaborator;
     User user;
-    Recipe recipe;
+    SimpleRecipe recipe;
     Recipe nonValidRecipe;
     SimpleRecipeBuilder simpleRecipeBuilder = new SimpleRecipeBuilder();
 
@@ -59,6 +59,16 @@ public class SimpleRecipeTest {
     public void validRecipe() {
         assertTrue(recipe.valid());
     }
+
+    @Test
+    @DisplayName("is not valid if it has a number of calories outside of the valid range")
+    public void nonValidCaloriesRecipe() {
+        recipe.setCalories(5f);
+        recipe.addIngredient(new Ingredient());
+        recipe.addPreparationStep("step one");
+        assertFalse(recipe.valid());
+    }
+
 
     @BeforeEach
     public void init() {
