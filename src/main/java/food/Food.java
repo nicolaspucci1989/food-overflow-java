@@ -1,11 +1,15 @@
 package food;
 
 import enums.FoodGroup;
+import lombok.Getter;
+import lombok.Setter;
 import nutritionalCondition.NutritionalCondition;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 public class Food {
     public String name;
     public String description;
@@ -36,26 +40,6 @@ public class Food {
 
     public boolean isFoodGroup(FoodGroup _foodGroup) {
         return foodGroup == _foodGroup;
-    }
-
-    /*
-    *   Getters and setters
-    * */
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     private boolean fieldIsValid(String field) {
