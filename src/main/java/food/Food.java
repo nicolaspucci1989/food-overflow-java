@@ -1,6 +1,7 @@
 package food;
 
 import enums.FoodGroup;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import nutritionalCondition.NutritionalCondition;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 public class Food {
     public String name;
     public String description;

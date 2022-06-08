@@ -1,9 +1,9 @@
 package recipe;
 
-import builders.FoodBuilder;
 import builders.SimpleRecipeBuilder;
 import enums.Difficulty;
 import enums.FoodGroup;
+import food.Food;
 import ingredient.Ingredient;
 import nutritionalCondition.Vegan;
 import nutritionalCondition.Vegetarian;
@@ -24,7 +24,6 @@ public class SimpleRecipeTest {
     User user;
     Recipe recipe;
     Recipe nonValidRecipe;
-    FoodBuilder foodBuilder = new FoodBuilder();
     SimpleRecipeBuilder simpleRecipeBuilder = new SimpleRecipeBuilder();
 
     @Test
@@ -65,12 +64,11 @@ public class SimpleRecipeTest {
     public void init() {
         author = new User();
         collaborator = new User();
-        var food =  foodBuilder
-                .setName("name")
-                .setDescription("description")
-                .setFoodGroup(FoodGroup.FATTY_OILS_SUGAR)
-                .addInadequateCondition(Vegetarian.getInstance())
-                .addInadequateCondition(Vegan.getInstance())
+        var food =  Food.builder()
+                .name("name")
+                .description("description")
+                .foodGroup(FoodGroup.FATTY_OILS_SUGAR)
+                .inadequateConditions(new HashSet<>(Arrays.asList(Vegetarian.getInstance(), Vegan.getInstance())))
                 .build();
         var ingredient = new Ingredient(food, "150 g");
 
