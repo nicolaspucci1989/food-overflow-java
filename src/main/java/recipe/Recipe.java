@@ -1,6 +1,9 @@
 package recipe;
 
 import ingredient.Ingredient;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import nutritionalCondition.NutritionalCondition;
 import user.User;
 
@@ -8,18 +11,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public abstract class Recipe {
-    User author;
-    Set<User> collaborators;
-    float calories;
-    List<String> preparationSteps;
-
-    public Recipe(User author, Set<User> collaborators, float calories, List<String> preparationSteps) {
-        this.author = author;
-        this.collaborators = collaborators;
-        this.calories = calories;
-        this.preparationSteps = preparationSteps;
-    }
+    private User author;
+    private Set<User> collaborators;
+    private float calories;
+    private List<String> preparationSteps;
 
     public boolean editable(User user) {
        return isAuthor(user) || collaborators.contains(user);
