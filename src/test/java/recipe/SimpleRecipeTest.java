@@ -69,6 +69,14 @@ public class SimpleRecipeTest {
         assertFalse(recipe.valid());
     }
 
+    @Test
+    @DisplayName("is not valid if it has cero preparation steps")
+    public void noStepsRecipe() {
+        nonValidRecipe.setCalories(100f);
+        nonValidRecipe.addIngredient(new Ingredient());
+        assertFalse(nonValidRecipe.valid());
+    }
+
 
     @BeforeEach
     public void init() {
