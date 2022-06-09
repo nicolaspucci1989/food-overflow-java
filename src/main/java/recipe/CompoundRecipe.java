@@ -52,7 +52,7 @@ public class CompoundRecipe extends Recipe{
                 .map(Recipe::difficulty)
                 .collect(Collectors.toSet())
                 .stream()
-                .max((o1, o2) -> o1.compareTo(o2) > 0 ? o2.ordinal() : o1.ordinal())
+                .max(Difficulty::compare)
                 .orElse(null);
     }
 
