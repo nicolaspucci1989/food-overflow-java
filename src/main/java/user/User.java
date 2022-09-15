@@ -18,14 +18,14 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-  public Routine routine;
-  public float weight;
-  public float height;
+  private Routine routine;
+  private float weight;
+  private float height;
   @Builder.Default
-  public Set<Food> favoriteFoods = new HashSet<>();
+  private Set<Food> favoriteFoods = new HashSet<>();
   @Builder.Default
-  public Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
-  public LocalDate dateOfBirth;
+  private Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
+  private LocalDate dateOfBirth;
 
   public User(Routine routine, float weight, float height, Set<Food> favoriteFoods, LocalDate dateOfBirth) {
     this.routine = routine;
