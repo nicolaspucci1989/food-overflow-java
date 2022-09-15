@@ -40,7 +40,7 @@ public class FoodTest {
 
   @BeforeEach
   public void init() {
-    food = new Food();
+    food = Food.builder().build();
   }
 
 }

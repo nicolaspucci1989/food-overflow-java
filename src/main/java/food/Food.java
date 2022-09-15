@@ -1,10 +1,7 @@
 package food;
 
 import enums.FoodGroup;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Singular;
+import lombok.*;
 import nutritionalCondition.NutritionalCondition;
 
 import java.util.Set;
@@ -12,23 +9,13 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public class Food {
   public String name;
   public String description;
   public FoodGroup foodGroup;
   @Singular
   public Set<NutritionalCondition> inadequateConditions;
-
-
-  public Food(String name, String description, FoodGroup foodGroup, Set<NutritionalCondition> inadequateConditions) {
-    this.name = name;
-    this.description = description;
-    this.foodGroup = foodGroup;
-    this.inadequateConditions = inadequateConditions;
-  }
-
-  public Food() {
-  }
 
   public Food(FoodGroup _foodGroup) {
     foodGroup = _foodGroup;
