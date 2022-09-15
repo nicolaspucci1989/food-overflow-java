@@ -3,6 +3,7 @@ package user;
 import enums.FoodGroup;
 import enums.Routine;
 import food.Food;
+import lombok.*;
 import nutritionalCondition.NutritionalCondition;
 
 import java.time.LocalDate;
@@ -11,102 +12,69 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
+@Builder
 public class User {
-    public Routine routine;
-    public float weight;
-    public float height;
-    public Set<Food> favoriteFoods = new HashSet<>();
-    public Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
-    public LocalDate dateOfBirth;
+  private Routine routine;
+  private float weight;
+  private float height;
+  @Builder.Default
+  private Set<Food> favoriteFoods = new HashSet<>();
+  @Builder.Default
+  private Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
+  private LocalDate dateOfBirth;
 
-    public User() {
-    }
+  public float bmi() {
+    return weight / (height * height);
+  }
 
-    public User(Routine routine, float weight, float height, Set<Food> favoriteFoods, LocalDate dateOfBirth) {
-        this.routine = routine;
-        this.weight = weight;
-        this.height = height;
-        this.favoriteFoods = favoriteFoods;
-        this.dateOfBirth = dateOfBirth;
-    }
+  public boolean healthy() {
+    return healthyBmi() && (!hasPreexistingNutritionalConditions() || nutritionalConditionsAreCorrected());
+  }
 
-    public float bmi() {
-        return weight / (height * height);
-    }
+  private boolean nutritionalConditionsAreCorrected() {
+    return nutritionalConditions.stream().allMatch(n -> n.isCorrected(this));
+  }
 
-    public boolean healthy() {
-        return healthyBmi() && (!hasPreexistingNutritionalConditions() || nutritionalConditionsAreCorrected());
-    }
+  private boolean hasPreexistingNutritionalConditions() {
+    return !nutritionalConditions.isEmpty();
+  }
 
-    private boolean nutritionalConditionsAreCorrected() {
-        return nutritionalConditions.stream().allMatch(n -> n.isCorrected(this));
-    }
+  private boolean healthyBmi() {
+    final float bmi = bmi();
+    return bmi >= 18 && bmi <= 30;
+  }
 
-    private boolean hasPreexistingNutritionalConditions() {
-        return !nutritionalConditions.isEmpty();
-    }
+  public boolean routineIs(Routine _routine) {
+    return routine == _routine;
+  }
 
-    private boolean healthyBmi() {
-        final float bmi = bmi();
-        return bmi >= 18 && bmi <= 30;
-    }
+  public boolean exceedsWeight(float _weight) {
+    return weight <= _weight;
+  }
 
-    public boolean routineIs(Routine _routine) {
-        return routine == _routine;
-    }
+  public boolean amountOfFavoriteFoods(FoodGroup foodGroup, int amount) {
+    return amount <= favoriteFoods.stream()
+        .filter(food -> food.isFoodGroup(foodGroup))
+        .collect(Collectors.toSet())
+        .size();
+  }
 
-    public boolean exceedsWeight(float _weight) {
-        return weight <= _weight;
-    }
+  public void addFavoriteFood(Food food) {
+    this.favoriteFoods.add(food);
+  }
 
-    public boolean amountOfFavoriteFoods(FoodGroup foodGroup, int amount) {
-        return amount <= favoriteFoods.stream()
-                .filter(food -> food.isFoodGroup(foodGroup))
-                .collect(Collectors.toSet())
-                .size();
-    }
+  public float age() {
+    return Period.between(dateOfBirth, LocalDate.now()).getYears();
+  }
 
-    public void addFavoriteFood(Food food) {
-        this.favoriteFoods.add(food);
-    }
+  public boolean isYoungerThan(float _age) {
+    return age() < _age;
+  }
 
-    public float age() {
-        return Period.between(dateOfBirth, LocalDate.now()).getYears();
-    }
-
-    public boolean isYoungerThan(float _age) {
-        return age() < _age;
-    }
-
-    public void addNutritionalCondition(NutritionalCondition nutritionalCondition) {
-        nutritionalConditions.add(nutritionalCondition);
-    }
-
-    /*
-    *   Getters and setters
-    */
-    public Routine getRoutine() {
-        return routine;
-    }
-
-    public void setRoutine(Routine routine) {
-        this.routine = routine;
-    }
-
-    public float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+  public void addNutritionalCondition(NutritionalCondition nutritionalCondition) {
+    nutritionalConditions.add(nutritionalCondition);
+  }
 
 }

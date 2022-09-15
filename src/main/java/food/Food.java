@@ -1,66 +1,37 @@
 package food;
 
 import enums.FoodGroup;
+import lombok.*;
 import nutritionalCondition.NutritionalCondition;
 
-import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 public class Food {
-    public String name;
-    public String description;
-    public FoodGroup foodGroup;
-    public Set<NutritionalCondition> inadequateConditions = new HashSet<>();
+  private String name;
+  private String description;
+  private FoodGroup foodGroup;
+  @Singular
+  private Set<NutritionalCondition> inadequateConditions;
 
-    public Food(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
+  public Food(FoodGroup _foodGroup) {
+    foodGroup = _foodGroup;
+  }
 
-    public Food(String name, String description, FoodGroup foodGroup, Set<NutritionalCondition> inadequateConditions) {
-        this.name = name;
-        this.description = description;
-        this.foodGroup = foodGroup;
-        this.inadequateConditions = inadequateConditions;
-    }
+  public boolean valid() {
+    return fieldIsValid(name) && fieldIsValid(description);
+  }
 
-    public Food() {}
+  public boolean isFoodGroup(FoodGroup _foodGroup) {
+    return foodGroup == _foodGroup;
+  }
 
-    public Food(FoodGroup _foodGroup) {
-        foodGroup = _foodGroup;
-    }
-
-    public boolean valid() {
-        return fieldIsValid(name) && fieldIsValid(description);
-    }
-
-    public boolean isFoodGroup(FoodGroup _foodGroup) {
-        return foodGroup == _foodGroup;
-    }
-
-    /*
-    *   Getters and setters
-    * */
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    private boolean fieldIsValid(String field) {
-        return field != null && field.length() > 0;
-    }
+  private boolean fieldIsValid(String field) {
+    return field != null && field.length() > 0;
+  }
 
 
 }

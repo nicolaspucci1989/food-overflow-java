@@ -1,22 +1,22 @@
 package nutritionalCondition;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import user.User;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Celiac extends NutritionalCondition {
-    static Celiac INSTANCE;
+  private static Celiac INSTANCE;
 
-    private Celiac() {
+  public static Celiac getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new Celiac();
     }
+    return INSTANCE;
+  }
 
-    public static Celiac getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Celiac();
-        }
-        return INSTANCE;
-    }
-
-    @Override
-    public boolean isCorrected(User user) {
-        return true;
-    }
+  @Override
+  public boolean isCorrected(User user) {
+    return true;
+  }
 }

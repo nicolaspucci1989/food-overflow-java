@@ -1,20 +1,19 @@
 package ingredient;
 
 import food.Food;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import nutritionalCondition.NutritionalCondition;
 
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ingredient {
-    Food food;
-    String quantity;
+  private Food food;
+  private String quantity;
 
-    public Ingredient(Food food, String quantity) {
-        this.food = food;
-        this.quantity = quantity;
-    }
-
-    public Set<NutritionalCondition> inadequateConditions() {
-        return food.inadequateConditions;
-    }
+  public Set<NutritionalCondition> inadequateConditions() {
+    return food.getInadequateConditions();
+  }
 }
