@@ -27,14 +27,6 @@ public class User {
   private Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
   private LocalDate dateOfBirth;
 
-  public User(Routine routine, float weight, float height, Set<Food> favoriteFoods, LocalDate dateOfBirth) {
-    this.routine = routine;
-    this.weight = weight;
-    this.height = height;
-    this.favoriteFoods = favoriteFoods;
-    this.dateOfBirth = dateOfBirth;
-  }
-
   public float bmi() {
     return weight / (height * height);
   }
