@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
   private Routine routine;
   private float weight;
