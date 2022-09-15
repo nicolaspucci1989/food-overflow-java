@@ -1,14 +1,11 @@
 package recipe;
 
-import builders.FoodBuilder;
 import builders.SimpleRecipeBuilder;
 import enums.Difficulty;
 import enums.FoodGroup;
+import food.Food;
 import ingredient.Ingredient;
-import nutritionalCondition.Diabetic;
-import nutritionalCondition.Hypertensive;
-import nutritionalCondition.Vegan;
-import nutritionalCondition.Vegetarian;
+import nutritionalCondition.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +23,6 @@ public class CompoundRecipeTest {
     public User compoundUser;
     public User authorOne;
     public CompoundRecipe compoundRecipe;
-    public FoodBuilder foodBd = new FoodBuilder();
     public SimpleRecipeBuilder simpleRecipeBd = new SimpleRecipeBuilder();
     private Recipe easyRecipeOne;
     private Recipe easyRecipeTwo;
@@ -62,7 +58,7 @@ public class CompoundRecipeTest {
 
     @Test
     @DisplayName("its preparation process is equal to the set of the preparation process of its sub-recipes plus its own preparation steps")
-    public void procesoRecetaCompuesta() {
+    public void compoundRecipeProcess() {
         var steps = new ArrayList<String>();
 
         steps.addAll(easyRecipeOne.getPreparationSteps());
@@ -101,26 +97,26 @@ public class CompoundRecipeTest {
         compoundUser = new User();
         authorOne = new User();
 
-        var foodOne = foodBd
-                .setName("food one")
-                .setDescription("food one description")
-                .setFoodGroup(FoodGroup.FATTY_OILS_SUGAR)
-                .addInadequateCondition(Vegetarian.getInstance())
-                .addInadequateCondition(Vegan.getInstance())
+        var foodOne = Food.builder()
+                .name("food one")
+                .description("food one description")
+                .foodGroup(FoodGroup.FATTY_OILS_SUGAR)
+                .inadequateCondition(Vegan.getInstance())
+                .inadequateCondition(Vegetarian.getInstance())
                 .build();
 
-        var foodTwo = foodBd
-                .setName("food two")
-                .setDescription("food two description")
-                .setFoodGroup(FoodGroup.VEGETABLES_FRUITS_SEEDS)
-                .addInadequateCondition(Hypertensive.getInstance())
+        var foodTwo = Food.builder()
+                .name("food two")
+                .description("food two description")
+                .foodGroup(FoodGroup.VEGETABLES_FRUITS_SEEDS)
+                .inadequateCondition(Hypertensive.getInstance())
                 .build();
 
-        var foodThree = foodBd
-                .setName("food three")
-                .setDescription("food two description")
-                .setFoodGroup(FoodGroup.DAIRY_DERIVATIVES)
-                .addInadequateCondition(Diabetic.getInstance())
+        var foodThree = Food.builder()
+                .name("food three")
+                .description("food two description")
+                .foodGroup(FoodGroup.DAIRY_DERIVATIVES)
+                .inadequateCondition(Diabetic.getInstance())
                 .build();
 
         var ingredientOne = new Ingredient(foodOne, "150 g");
