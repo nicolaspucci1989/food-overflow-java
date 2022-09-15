@@ -1,5 +1,6 @@
 package recipe;
 
+import enums.Difficulty;
 import ingredient.Ingredient;
 import lombok.*;
 import nutritionalCondition.NutritionalCondition;
@@ -17,6 +18,11 @@ public abstract class Recipe {
     private Set<User> collaborators;
     private float calories;
     private List<String> preparationSteps;
+
+    public Recipe(User author, Set<User> collaborators) {
+        this.author = author;
+        this.collaborators = collaborators;
+    }
 
     public boolean editable(User user) {
        return isAuthor(user) || collaborators.contains(user);
@@ -61,4 +67,10 @@ public abstract class Recipe {
     public abstract List<String> getPreparationSteps();
 
     public abstract Difficulty difficulty();
+
+    public abstract void addIngredient(Ingredient ingredient) throws Exception;
+
+    public abstract void addPreparationStep(String step_one) throws Exception;
+
+    public abstract void setCalories(Float calories) throws Exception;
 }
