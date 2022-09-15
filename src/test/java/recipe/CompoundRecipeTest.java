@@ -99,8 +99,8 @@ public class CompoundRecipeTest {
 
   @BeforeEach
   public void init() {
-    compoundUser = new User();
-    authorOne = new User();
+    compoundUser = User.builder().build();
+    authorOne = User.builder().build();
 
     var foodOne = Food.builder()
         .name("food one")

@@ -81,8 +81,8 @@ public class SimpleRecipeTest {
 
   @BeforeEach
   public void init() {
-    author = new User();
-    collaborator = new User();
+    author = User.builder().build();
+    collaborator = User.builder().build();
     var food = Food.builder()
         .name("name")
         .description("description")

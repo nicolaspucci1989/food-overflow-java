@@ -92,7 +92,7 @@ public class NutritionalConditionTest {
 
   @BeforeEach
   public void init() {
-    user = new User();
+    user = User.builder().build();
     celiac = Celiac.getInstance();
     diabetic = Diabetic.getInstance();
     hypertensive = Hypertensive.getInstance();
