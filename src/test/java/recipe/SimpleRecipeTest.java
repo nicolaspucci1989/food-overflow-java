@@ -62,7 +62,7 @@ public class SimpleRecipeTest {
 
     @Test
     @DisplayName("is not valid if it has a number of calories outside of the valid range")
-    public void nonValidCaloriesRecipe() {
+    public void nonValidCaloriesRecipe() throws Exception {
         recipe.setCalories(5f);
         recipe.addIngredient(new Ingredient());
         recipe.addPreparationStep("step one");
@@ -70,8 +70,8 @@ public class SimpleRecipeTest {
     }
 
     @Test
-    @DisplayName("is not valid if it has cero preparation steps")
-    public void noStepsRecipe() {
+    @DisplayName("is not valid if it has zero preparation steps")
+    public void noStepsRecipe() throws Exception {
         nonValidRecipe.setCalories(100f);
         nonValidRecipe.addIngredient(new Ingredient());
         assertFalse(nonValidRecipe.valid());
