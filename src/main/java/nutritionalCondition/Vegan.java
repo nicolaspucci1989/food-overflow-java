@@ -7,17 +7,17 @@ import user.User;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Vegan extends NutritionalCondition {
-    static Vegan INSTANCE;
+  static Vegan INSTANCE;
 
-    public static Vegan getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Vegan();
-        }
-        return INSTANCE;
+  public static Vegan getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new Vegan();
     }
+    return INSTANCE;
+  }
 
-    @Override
-    public boolean isCorrected(User user) {
-        return user.amountOfFavoriteFoods(FoodGroup.VEGETABLES_FRUITS_SEEDS, 2);
-    }
+  @Override
+  public boolean isCorrected(User user) {
+    return user.amountOfFavoriteFoods(FoodGroup.VEGETABLES_FRUITS_SEEDS, 2);
+  }
 }

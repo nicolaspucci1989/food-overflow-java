@@ -10,10 +10,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ingredient {
-    Food food;
-    String quantity;
+  Food food;
+  String quantity;
 
-    public Set<NutritionalCondition> inadequateConditions() {
-        return food.inadequateConditions;
-    }
+  public Set<NutritionalCondition> inadequateConditions() {
+    return food.inadequateConditions;
+  }
 }

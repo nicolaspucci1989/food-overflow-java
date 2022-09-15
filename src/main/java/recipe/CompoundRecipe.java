@@ -35,6 +35,11 @@ public class CompoundRecipe extends Recipe {
   }
 
   @Override
+  public void setCalories(Float calories) throws Exception {
+    throw new Exception();
+  }
+
+  @Override
   public List<String> getPreparationSteps() {
     return subRecipes
         .stream()
@@ -62,11 +67,6 @@ public class CompoundRecipe extends Recipe {
 
   @Override
   public void addPreparationStep(String step_one) throws Exception {
-    throw new Exception();
-  }
-
-  @Override
-  public void setCalories(Float calories) throws Exception {
     throw new Exception();
   }
 
