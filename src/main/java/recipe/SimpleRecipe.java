@@ -53,4 +53,14 @@ public class SimpleRecipe extends Recipe{
     public Difficulty difficulty() {
         return difficulty;
     }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
+
+    @Override
+    public void addPreparationStep(String preparationStep) throws Exception {
+        this.preparationSteps.add(preparationStep);
+    }
 }
