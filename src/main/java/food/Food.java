@@ -4,9 +4,9 @@ import enums.FoodGroup;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Singular;
 import nutritionalCondition.NutritionalCondition;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -16,12 +16,9 @@ public class Food {
     public String name;
     public String description;
     public FoodGroup foodGroup;
-    public Set<NutritionalCondition> inadequateConditions = new HashSet<>();
+    @Singular
+    public Set<NutritionalCondition> inadequateConditions;
 
-    public Food(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
     public Food(String name, String description, FoodGroup foodGroup, Set<NutritionalCondition> inadequateConditions) {
         this.name = name;
