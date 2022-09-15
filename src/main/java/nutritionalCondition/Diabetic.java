@@ -7,7 +7,7 @@ import user.User;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Diabetic extends NutritionalCondition {
-  static Diabetic INSTANCE;
+  private static Diabetic INSTANCE;
 
   public static Diabetic getInstance() {
     if (INSTANCE == null) {

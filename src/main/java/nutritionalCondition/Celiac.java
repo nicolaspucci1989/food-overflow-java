@@ -6,7 +6,7 @@ import user.User;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Celiac extends NutritionalCondition {
-  static Celiac INSTANCE;
+  private static Celiac INSTANCE;
 
   public static Celiac getInstance() {
     if (INSTANCE == null) {

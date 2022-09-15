@@ -7,7 +7,7 @@ import user.User;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Vegan extends NutritionalCondition {
-  static Vegan INSTANCE;
+  private static Vegan INSTANCE;
 
   public static Vegan getInstance() {
     if (INSTANCE == null) {

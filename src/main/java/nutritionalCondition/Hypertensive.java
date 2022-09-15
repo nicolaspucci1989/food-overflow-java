@@ -7,7 +7,7 @@ import user.User;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Hypertensive extends NutritionalCondition {
-  static Hypertensive INSTANCE;
+  private static Hypertensive INSTANCE;
 
   public static Hypertensive getInstance() {
     if (INSTANCE == null) {
