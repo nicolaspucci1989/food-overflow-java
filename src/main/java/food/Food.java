@@ -11,11 +11,11 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 public class Food {
-  public String name;
-  public String description;
-  public FoodGroup foodGroup;
+  private String name;
+  private String description;
+  private FoodGroup foodGroup;
   @Singular
-  public Set<NutritionalCondition> inadequateConditions;
+  private Set<NutritionalCondition> inadequateConditions;
 
   public Food(FoodGroup _foodGroup) {
     foodGroup = _foodGroup;

@@ -14,6 +14,6 @@ public class Ingredient {
   private String quantity;
 
   public Set<NutritionalCondition> inadequateConditions() {
-    return food.inadequateConditions;
+    return food.getInadequateConditions();
   }
 }
