@@ -11,6 +11,8 @@ import user.User;
 
 import java.time.LocalDate;
 
+import static helpers.Helper.getBasicUserBuilder;
+
 @DisplayName("Given a nutritional condition")
 public class NutritionalConditionTest {
   User user;
@@ -57,8 +59,10 @@ public class NutritionalConditionTest {
   @Test
   @DisplayName("vegan is corrected by a user who has more than two fruits in its favorites foods")
   public void veganWithFruits() {
-    user.addFavoriteFood(Food.builder().foodGroup(FoodGroup.VEGETABLES_FRUITS_SEEDS).build());
-    user.addFavoriteFood(Food.builder().foodGroup(FoodGroup.VEGETABLES_FRUITS_SEEDS).build());
+    user = getBasicUserBuilder()
+        .favoriteFood(Food.builder().foodGroup(FoodGroup.VEGETABLES_FRUITS_SEEDS).build())
+        .favoriteFood(Food.builder().foodGroup(FoodGroup.VEGETABLES_FRUITS_SEEDS).build())
+        .build();
     Assertions.assertTrue(vegan.isCorrected(user));
   }
 
@@ -85,8 +89,10 @@ public class NutritionalConditionTest {
   @Test
   @DisplayName("vegetarian is not corrected by a user older than 30 and with fats between its favorite foods")
   public void vegetarianOldWithFat() {
-    user.setDateOfBirth(LocalDate.now().minusYears(55));
-    user.addFavoriteFood(Food.builder().foodGroup(FoodGroup.FATTY_OILS_SUGAR).build());
+    user = getBasicUserBuilder()
+        .dateOfBirth(LocalDate.now().minusYears(55))
+        .favoriteFood(Food.builder().foodGroup(FoodGroup.FATTY_OILS_SUGAR).build())
+        .build();
     Assertions.assertFalse(vegetarian.isCorrected(user));
   }
 

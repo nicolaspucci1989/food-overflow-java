@@ -15,7 +15,7 @@ import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Given and individual recipe suggestion")
-public class individualRecipeSuggestion {
+public class IndividualRecipeSuggestionTest {
     SimpleRecipeBuilder simpleRecipeBuilder = new SimpleRecipeBuilder();
     Recipe suggestibleRecipe;
     Food favoriteFood;
