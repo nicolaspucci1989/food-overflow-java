@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// TODO: try to use lombok builder
 public class SimpleRecipeBuilder {
   List<String> preparationSteps = new ArrayList<>();
   Set<Ingredient> ingredients = new HashSet<>();
