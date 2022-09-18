@@ -1,6 +1,7 @@
 package recipe;
 
 import enums.Difficulty;
+import food.Food;
 import ingredient.Ingredient;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import user.User;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -62,5 +64,10 @@ public class SimpleRecipe extends Recipe {
   @Override
   public void addPreparationStep(String preparationStep) {
     this.preparationSteps.add(preparationStep);
+  }
+
+  @Override
+  public Set<Food> getFoods() {
+    return this.ingredients.stream().map(Ingredient::getFood).collect(Collectors.toSet());
   }
 }

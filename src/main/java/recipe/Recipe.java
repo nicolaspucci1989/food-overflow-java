@@ -1,6 +1,7 @@
 package recipe;
 
 import enums.Difficulty;
+import food.Food;
 import ingredient.Ingredient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -75,4 +76,6 @@ public abstract class Recipe {
   public abstract void addIngredient(Ingredient ingredient) throws Exception;
 
   public abstract void addPreparationStep(String step_one) throws Exception;
+
+  public abstract Set<Food> getFoods();
 }

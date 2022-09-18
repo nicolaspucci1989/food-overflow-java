@@ -1,9 +1,11 @@
 package recipe;
 
 import enums.Difficulty;
+import food.Food;
 import ingredient.Ingredient;
 import user.User;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -68,6 +70,14 @@ public class CompoundRecipe extends Recipe {
   @Override
   public void addPreparationStep(String step_one) throws Exception {
     throw new Exception();
+  }
+
+  @Override
+  public Set<Food> getFoods() {
+    return this.subRecipes.stream()
+            .map(Recipe::getFoods)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toSet());
   }
 
   public void addSubRecipe(Recipe recipe) {

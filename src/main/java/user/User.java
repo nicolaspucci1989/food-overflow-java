@@ -5,10 +5,11 @@ import enums.Routine;
 import food.Food;
 import lombok.*;
 import nutritionalCondition.NutritionalCondition;
+import recipe.Recipe;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,10 +20,12 @@ public class User {
   private Routine routine;
   private float weight;
   private float height;
-  @Builder.Default
-  private Set<Food> favoriteFoods = new HashSet<>();
-  @Builder.Default
-  private Set<NutritionalCondition> nutritionalConditions = new HashSet<>();
+  @Singular
+  private Set<Food> favoriteFoods;
+  @Singular
+  private Set<Food> dislikedFoods;
+  @Singular
+  private Set<NutritionalCondition> nutritionalConditions;
   private LocalDate dateOfBirth;
 
   public float bmi() {
@@ -75,6 +78,22 @@ public class User {
 
   public void addNutritionalCondition(NutritionalCondition nutritionalCondition) {
     nutritionalConditions.add(nutritionalCondition);
+  }
+
+  public boolean isSuggestible(Recipe recipe) {
+    return !hasDislikedIngredients(recipe) && isAdequateForNutritionalConditions(recipe);
+  }
+
+  private boolean isAdequateForNutritionalConditions(Recipe recipe) {
+    return Collections.disjoint(recipe.inadequateConditions(), this.nutritionalConditions);
+  }
+
+  private boolean hasDislikedIngredients(Recipe recipe) {
+    return recipe.getFoods().stream().anyMatch(this::dislikesFood);
+  }
+
+  private boolean dislikesFood(Food food) {
+    return this.dislikedFoods.contains(food);
   }
 
 }
