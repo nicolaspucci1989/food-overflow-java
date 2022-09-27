@@ -11,16 +11,16 @@ The difficulty of a SimpleRecipe comes from it's attribute difficulty.
 The difficulty of a CompoundRecipe is calculated from the maximum difficulty of all it's sub recipes
 #### Strategy
 
-### Alimento
-* cada alimento es inadecuado para un conjunto de condiciones alimenticias
+### Food
+* A particular food may be inappropriate for a set of nutritional conditions.
 
 ### Usuarios
-* Pueden tener distintas condiciones alimenticias: vegano, vegetariano, hipertenso, diabetico, celiaco
-* Pueden ser saludables dependiendo de sus condiciones alimenticias
-* Pueden crear recetas y colaborar en recetas.
+* Users can posses any number of nutritional conditions.
+* Users can be healthy or unhealthy depending on their nutritional conditions, their diet, and exercise routine.
+* Users can create recipes.
+* Users can contribute to recipes.
 
-### Recetas
-* Tienen ingredientes compuestos por un alimento y su cantidad
-* Pueden ser sugeribles o no sugeribles para un usuario dependiendo de las condiciones alimenticias del usuario y si este las subsana
-* Existen recetas simples y recetas compuestas que contienen multiples recetas, simples o compuestas.
-* 
+### Recipes
+* Recipes have many ingredients
+* Recipes are suggestible to a user depending on the user's nutritional condition and the recipe ingredients.
+* Recipes can be simple or compound. Compound recipes have multiple sub recipes, which in turn can be simple or compound.
