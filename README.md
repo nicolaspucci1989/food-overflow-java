@@ -14,7 +14,7 @@ The difficulty of a CompoundRecipe is calculated from the maximum difficulty of 
 ### Food
 * A particular food may be inappropriate for a set of nutritional conditions.
 
-### Usuarios
+### Users
 * Users can posses any number of nutritional conditions.
 * Users can be healthy or unhealthy depending on their nutritional conditions, their diet, and exercise routine.
 * Users can create recipes.
