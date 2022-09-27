@@ -5,11 +5,15 @@
 Recipes have the following attributes:
 * Difficulty.
 * Ingredients.
-* Inadequate conditions.  
-From the client's perspective recipes behave polymorphically.
+* Inadequate conditions.
+
+From the client's perspective recipes behave **polymorphically**.
 The difficulty of a SimpleRecipe comes from it's attribute difficulty.
 The difficulty of a CompoundRecipe is calculated from the maximum difficulty of all it's sub recipes
-#### Strategy
+#### Strategy (Nutritional condition)
+Users can be celiac, vegan, diabetic, vegetarian, hypertensive. Users may have mutiple nutritional conditions at the same time.
+Nutritional conditions can be remedied is the user has the correct diet and routine.
+This behaviour is modeled though another class (NutritionalCondition).
 
 ### Food
 * A particular food may be inappropriate for a set of nutritional conditions.
